@@ -1,16 +1,13 @@
-# This is a sample Python script.
+import unittest
 
-# Press Maj+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Reverses the given string.
+def reverse_string(input_string):
+    return input_string[::-1]
 
+class TestReverseStringFunction(unittest.TestCase):
+    def test_reverse_string(self):
+        self.assertEqual(reverse_string("Hello, World!"), "!dlroW ,olleH")
+        self.assertEqual(reverse_string("racecar"), "racecar")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    unittest.main()
