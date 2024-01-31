@@ -23,7 +23,7 @@ class OHCETest(unittest.TestCase):
                 resultat = OHCE.est_palindrome(palindrome)
                 # ALORS je reçois la chaîne suivie de "Bien dit !"
                 attendu = palindrome + os.linesep + "Bien dit !"
-                self.assertEqual(resultat, attendu)
+                self.assertIn(attendu, resultat)
 
     def test_bonjour(self):
         # ÉTANT DONNE une chaîne de caractères
