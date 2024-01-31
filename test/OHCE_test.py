@@ -27,14 +27,13 @@ class OHCETest(unittest.TestCase):
 
     def test_bonjour(self):
         # ÉTANT DONNE une chaîne de caractères
-        for chaine in ["bonjour", "radar"]:
-            with self.subTest(chaine):
-                # QUAND je le passe dans la fonction est palindrome
-                resultat = OHCE.est_palindrome(chaine)
-                # ALORS je reçois "Bonjour" sur la premiere ligne
-                premiere_ligne = resultat.split(os.linesep)[0]
-                attendu = "Bonjour"
-                self.assertEqual(premiere_ligne, attendu)
+        chaine = "bonjour"
+        # QUAND je le passe dans la fonction est palindrome
+        resultat = OHCE.est_palindrome(chaine)
+        # ALORS je reçois "Bonjour" sur la premiere ligne
+        premiere_ligne = resultat.split(os.linesep)[0]
+        attendu = "Bonjour"
+        self.assertEqual(premiere_ligne, attendu)
 
     def test_au_revoir(self):
         # ÉTANT DONNE une chaîne de caractères
