@@ -35,3 +35,13 @@ class OHCETest(unittest.TestCase):
                 premiere_ligne = resultat.split(os.linesep)[0]
                 attendu = "Bonjour"
                 self.assertEqual(premiere_ligne, attendu)
+
+    def test_au_revoir(self):
+        # ÉTANT DONNE une chaîne de caractères
+        chaine = "au revoir"
+        # QUAND je le passe dans la fonction est palindrome
+        resultat = OHCE.est_palindrome(chaine)
+        # ALORS je reçois "Au revoir" puis la chaîne
+        derniere_ligne = resultat.split(os.linesep)[-1]
+        attendu = "Au revoir"
+        self.assertEqual(derniere_ligne, attendu)
