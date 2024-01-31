@@ -25,6 +25,15 @@ class OHCETest(unittest.TestCase):
                 attendu = palindrome + os.linesep + "Bien dit !"
                 self.assertIn(attendu, resultat)
 
+    def test_non_palindrome(self):
+        # ÉTANT DONNE une chaîne de caractères
+        non_palindrome = "yakak"
+        # QUAND je le passe dans la fonction est palindrome
+        resultat = OHCE.est_palindrome(non_palindrome)
+        # ALORS je reçois la chaîne suivie de "Bien dit !"
+        attendu = "Bien dit !"
+        self.assertNotIn(attendu, resultat)
+
     def test_bonjour(self):
         # ÉTANT DONNE une chaîne de caractères
         chaine = "bonjour"
