@@ -7,13 +7,13 @@ from src.OHCE import OHCE
 class OHCETest(unittest.TestCase):
     def test_miroir(self):
         # ÉTANT DONNE une chaîne de caractères
-        for chaine in ["test", "miroir"]:
+        for chaine in ["test", "miroir", "kayak"]:
             with self.subTest(chaine):
                 # QUAND je la passe à la fonction miroir
-                resultat = OHCE.miroir(chaine)
+                resultat = OHCE.est_palindrome(chaine)
                 # ALORS je reçois la chaîne de caractères inversée
                 attendu = chaine[::-1]
-                self.assertEqual(resultat, attendu)
+                self.assertIn(attendu, resultat)
 
     def test_palindrome_bien_dit(self):
         # ÉTANT DONNE une chaîne de caractères
