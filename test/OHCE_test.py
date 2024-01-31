@@ -17,9 +17,10 @@ class OHCETest(unittest.TestCase):
 
     def test_palindrome_bien_dit(self):
         # ÉTANT DONNE une chaîne de caractères
-        palindrome = "kayak"
-        # QUAND je le passe dans la fonction est palindrome
-        resultat = OHCE.est_palindrome(palindrome)
-        # ALORS je reçois la chaîne suivie de "Bien dit !"
-        attendu = palindrome + os.linesep + "Bien dit !"
-        self.assertEqual(resultat, attendu)
+        for palindrome in ["kayak", "radar"]:
+            with self.subTest(palindrome):
+                # QUAND je le passe dans la fonction est palindrome
+                resultat = OHCE.est_palindrome(palindrome)
+                # ALORS je reçois la chaîne suivie de "Bien dit !"
+                attendu = palindrome + os.linesep + "Bien dit !"
+                self.assertEqual(resultat, attendu)
