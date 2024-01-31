@@ -1,5 +1,7 @@
 import unittest
 
+from src.OHCE import OHCE
+
 class OHCETest(unittest.TestCase):
     def test_miroir(self):
       # ÉTANT DONNE une chaîne de caractères
