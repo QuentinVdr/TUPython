@@ -8,4 +8,5 @@ class OHCE:
         response = "Bonjour" + os.linesep + mirror
         if mirror == chaine:
             response += os.linesep + "Bien dit !"
+        response += os.linesep + "Au revoir"
         return response
