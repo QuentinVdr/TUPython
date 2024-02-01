@@ -18,7 +18,7 @@ class OHCETest(unittest.TestCase):
                 attendu = chaine[::-1]
                 self.assertIn(attendu, resultat)
 
-    def test_palindrome_bien_dit(self):
+    def test_palindrome_feliciter(self):
         # ÉTANT DONNE la langue de l'utilisateur
         for langue in [LangueFrancaise(), LangueAnglais()]:
             with self.subTest(langue):

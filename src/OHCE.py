@@ -2,11 +2,13 @@ import os
 
 
 class OHCE:
-    @classmethod
-    def est_palindrome(cls, chaine):
+    def __init__(self, langue):
+        self.__langue = langue
+
+    def est_palindrome(self, chaine):
         mirror = chaine[::-1]
         response = "Bonjour" + os.linesep + mirror
         if mirror == chaine:
-            response += os.linesep + "Bien dit !"
+            response += os.linesep + self.__langue.feliciter()
         response += os.linesep + "Au revoir"
         return response
