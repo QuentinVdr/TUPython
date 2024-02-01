@@ -1,7 +1,6 @@
 import os
 import unittest
 
-from src.OHCE import OHCE
 from src.langueAnglais import LangueAnglais
 from src.langueFrancais import LangueFrancaise
 from test.utilities.langueSpy import LangueSpy
@@ -9,12 +8,14 @@ from test.utilities.ohceBuilder import OHCEBuilder
 
 
 class OHCETest(unittest.TestCase):
+    __ohce = OHCEBuilder().build()
+
     def test_miroir(self):
         # ÉTANT DONNE une chaîne de caractères
         for chaine in ["test", "miroir", "kayak"]:
             with self.subTest(chaine):
                 # QUAND je la passe à la fonction miroir
-                resultat = OHCE.est_palindrome(chaine)
+                resultat = self.__ohce.est_palindrome(chaine)
                 # ALORS je reçois la chaîne de caractères inversée
                 attendu = chaine[::-1]
                 self.assertIn(attendu, resultat)
@@ -36,10 +37,9 @@ class OHCETest(unittest.TestCase):
     def test_non_palindrome(self):
         # ÉTANT DONNE une chaîne de caractères
         langue = LangueSpy()
-        ohce = OHCEBuilder().init_langue(langue).build()
         non_palindrome = "yakak"
         # QUAND je le passe dans la fonction est palindrome
-        ohce.est_palindrome(non_palindrome)
+        self.__ohce.est_palindrome(non_palindrome)
         # ALORS je reçois la chaîne sans félicitation
         self.assertFalse(langue.felicitations_consultees())
 
@@ -47,7 +47,7 @@ class OHCETest(unittest.TestCase):
         # ÉTANT DONNE une chaîne de caractères
         chaine = "bonjour"
         # QUAND je le passe dans la fonction est palindrome
-        resultat = OHCE.est_palindrome(chaine)
+        resultat = self.__ohce.est_palindrome(chaine)
         # ALORS je reçois "Bonjour" sur la premiere ligne
         premiere_ligne = resultat.split(os.linesep)[0]
         attendu = "Bonjour"
@@ -57,7 +57,7 @@ class OHCETest(unittest.TestCase):
         # ÉTANT DONNE une chaîne de caractères
         chaine = "au revoir"
         # QUAND je le passe dans la fonction est palindrome
-        resultat = OHCE.est_palindrome(chaine)
+        resultat = self.__ohce.est_palindrome(chaine)
         # ALORS je reçois "Au revoir" puis la chaîne
         derniere_ligne = resultat.split(os.linesep)[-1]
         attendu = "Au revoir"
