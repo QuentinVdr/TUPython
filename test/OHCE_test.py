@@ -2,6 +2,9 @@ import os
 import unittest
 
 from src.OHCE import OHCE
+from src.langueAnglais import LangueAnglais
+from src.langueFrancais import LangueFrancaise
+from test.utilities.ohceBuilder import OHCEBuilder
 
 
 class OHCETest(unittest.TestCase):
@@ -16,13 +19,17 @@ class OHCETest(unittest.TestCase):
                 self.assertIn(attendu, resultat)
 
     def test_palindrome_bien_dit(self):
-        # ÉTANT DONNE une chaîne de caractères
-        for palindrome in ["kayak", "radar"]:
-            with self.subTest(palindrome):
+        # ÉTANT DONNE la langue de l'utilisateur
+        for langue in [LangueFrancaise(), LangueAnglais()]:
+            with self.subTest(langue):
+                # ÉTANT DONNE une chaîne de caractères
+                palindrome = "kayak"
                 # QUAND je le passe dans la fonction est palindrome
-                resultat = OHCE.est_palindrome(palindrome)
+                resultat = (
+                    OHCEBuilder().init_langue(langue).build().est_palindrome(palindrome)
+                )
                 # ALORS je reçois la chaîne suivie de "Bien dit !"
-                attendu = palindrome + os.linesep + "Bien dit !"
+                attendu = palindrome + os.linesep + langue.feliciter()
                 self.assertIn(attendu, resultat)
 
     def test_non_palindrome(self):
