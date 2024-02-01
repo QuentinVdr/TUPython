@@ -4,6 +4,7 @@ import unittest
 from src.OHCE import OHCE
 from src.langueAnglais import LangueAnglais
 from src.langueFrancais import LangueFrancaise
+from test.utilities.langueSpy import LangueSpy
 from test.utilities.ohceBuilder import OHCEBuilder
 
 
@@ -34,12 +35,13 @@ class OHCETest(unittest.TestCase):
 
     def test_non_palindrome(self):
         # ÉTANT DONNE une chaîne de caractères
+        langue = LangueSpy()
+        ohce = OHCEBuilder().init_langue(langue).build()
         non_palindrome = "yakak"
         # QUAND je le passe dans la fonction est palindrome
-        resultat = OHCE.est_palindrome(non_palindrome)
-        # ALORS je reçois la chaîne suivie de "Bien dit !"
-        attendu = "Bien dit !"
-        self.assertNotIn(attendu, resultat)
+        ohce.est_palindrome(non_palindrome)
+        # ALORS je reçois la chaîne sans félicitation
+        self.assertFalse(langue.felicitations_consultees())
 
     def test_bonjour(self):
         # ÉTANT DONNE une chaîne de caractères
