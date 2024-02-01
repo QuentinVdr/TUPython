@@ -7,7 +7,7 @@ class OHCE:
 
     def est_palindrome(self, chaine):
         mirror = chaine[::-1]
-        response = "Bonjour" + os.linesep + mirror
+        response = self.__langue.salutation() + os.linesep + mirror
         if mirror == chaine:
             response += os.linesep + self.__langue.feliciter()
         response += os.linesep + "Au revoir"
