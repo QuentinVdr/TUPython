@@ -44,14 +44,19 @@ class OHCETest(unittest.TestCase):
         self.assertFalse(langue.felicitations_consultees())
 
     def test_bonjour(self):
-        # ÉTANT DONNE une chaîne de caractères
-        chaine = "bonjour"
-        # QUAND je le passe dans la fonction est palindrome
-        resultat = self.__ohce.est_palindrome(chaine)
-        # ALORS je reçois "Bonjour" sur la premiere ligne
-        premiere_ligne = resultat.split(os.linesep)[0]
-        attendu = "Bonjour"
-        self.assertEqual(premiere_ligne, attendu)
+        # ÉTANT DONNE la langue de l'utilisateur
+        for langue in [LangueFrancaise(), LangueAnglais()]:
+            with self.subTest(langue):
+                # ÉTANT DONNE une chaîne de caractères
+                chaine = "bonjour"
+                # QUAND je le passe dans la fonction est palindrome
+                resultat = (
+                    OHCEBuilder().init_langue(langue).build().est_palindrome(chaine)
+                )
+                # ALORS je reçois la salutation sur la premiere ligne
+                premiere_ligne = resultat.split(os.linesep)[0]
+                attendu = langue.salutation()
+                self.assertEqual(premiere_ligne, attendu)
 
     def test_au_revoir(self):
         # ÉTANT DONNE une chaîne de caractères
