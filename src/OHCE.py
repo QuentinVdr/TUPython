@@ -10,5 +10,5 @@ class OHCE:
         response = self.__langue.salutation() + os.linesep + mirror
         if mirror == chaine:
             response += os.linesep + self.__langue.feliciter()
-        response += os.linesep + "Au revoir"
+        response += os.linesep + self.__langue.revoyure()
         return response

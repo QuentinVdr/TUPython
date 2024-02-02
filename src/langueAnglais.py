@@ -5,5 +5,8 @@ class LangueAnglais:
     def salutation(self):
         return "Hello"
 
+    def revoyure(self):
+        return "Good bye"
+
     def __str__(self):
         return "Anglais"
