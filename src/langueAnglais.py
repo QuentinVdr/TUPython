@@ -17,8 +17,17 @@ class LangueAnglais:
         else:
             return "Hello !"
 
-    def revoyure(self):
-        return "Good bye"
+    def revoyure(self, moment):
+        if moment == Moment.MATIN:
+            return "Good day"
+        elif moment == Moment.APRES_MIDI:
+            return "Good end of day"
+        elif moment == Moment.SOIR:
+            return "Good evening"
+        elif moment == Moment.NUIT:
+            return "Good night"
+        else:
+            return "Good bye"
 
     def __str__(self):
         return "Anglais"
