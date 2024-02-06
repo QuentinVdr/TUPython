@@ -5,5 +5,5 @@ class LangueStub:
     def salutation(self, moment):
         return ""
 
-    def revoyure(self):
+    def revoyure(self, moment):
         return ""

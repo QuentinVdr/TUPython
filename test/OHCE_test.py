@@ -69,14 +69,21 @@ class OHCETest(unittest.TestCase):
     def test_au_revoir(self):
         # ÉTANT DONNE la langue de l'utilisateur
         for langue in [LangueFrancaise(), LangueAnglais()]:
-            with self.subTest(langue):
-                # ÉTANT DONNE une chaîne de caractères
-                chaine = "au revoir"
-                # QUAND je le passe dans la fonction est palindrome
-                resultat = (
-                    OHCEBuilder().init_langue(langue).build().est_palindrome(chaine)
-                )
-                # ALORS je reçois "Au revoir" puis la chaîne
-                derniere_ligne = resultat.split(os.linesep)[-1]
-                attendu = langue.revoyure()
-                self.assertEqual(derniere_ligne, attendu)
+            for moment in Moment:
+                with self.subTest(
+                    "{langue} {moment}".format(langue=langue, moment=moment.name)
+                ):
+                    # ÉTANT DONNE une chaîne de caractères
+                    chaine = "au revoir"
+                    # QUAND je le passe dans la fonction est palindrome
+                    resultat = (
+                        OHCEBuilder()
+                        .init_langue(langue)
+                        .init_moment(moment)
+                        .build()
+                        .est_palindrome(chaine)
+                    )
+                    # ALORS je reçois "Au revoir" puis la chaîne
+                    derniere_ligne = resultat.split(os.linesep)[-1]
+                    attendu = langue.revoyure(moment)
+                    self.assertEqual(derniere_ligne, attendu)
