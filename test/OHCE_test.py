@@ -1,10 +1,11 @@
 import os
 import unittest
+from test.utilities.langueSpy import LangueSpy
+from test.utilities.ohceBuilder import OHCEBuilder
 
 from src.langueAnglais import LangueAnglais
 from src.langueFrancais import LangueFrancaise
-from test.utilities.langueSpy import LangueSpy
-from test.utilities.ohceBuilder import OHCEBuilder
+from src.moment import Moment
 
 
 class OHCETest(unittest.TestCase):
@@ -46,17 +47,24 @@ class OHCETest(unittest.TestCase):
     def test_bonjour(self):
         # ÉTANT DONNE la langue de l'utilisateur
         for langue in [LangueFrancaise(), LangueAnglais()]:
-            with self.subTest(langue):
-                # ÉTANT DONNE une chaîne de caractères
-                chaine = "bonjour"
-                # QUAND je le passe dans la fonction est palindrome
-                resultat = (
-                    OHCEBuilder().init_langue(langue).build().est_palindrome(chaine)
-                )
-                # ALORS je reçois la salutation sur la premiere ligne
-                premiere_ligne = resultat.split(os.linesep)[0]
-                attendu = langue.salutation()
-                self.assertEqual(premiere_ligne, attendu)
+            for moment in Moment:
+                with self.subTest(
+                    "{langue} {moment}".format(langue=langue, moment=moment.name)
+                ):
+                    # ÉTANT DONNE une chaîne de caractères
+                    chaine = "bonjour"
+                    # QUAND je le passe dans la fonction est palindrome
+                    resultat = (
+                        OHCEBuilder()
+                        .init_langue(langue)
+                        .init_moment(moment)
+                        .build()
+                        .est_palindrome(chaine)
+                    )
+                    # ALORS je reçois la salutation sur la premiere ligne
+                    premiere_ligne = resultat.split(os.linesep)[0]
+                    attendu = langue.salutation(moment)
+                    self.assertEqual(premiere_ligne, attendu)
 
     def test_au_revoir(self):
         # ÉTANT DONNE la langue de l'utilisateur

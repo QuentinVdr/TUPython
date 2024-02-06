@@ -2,7 +2,7 @@ class LangueStub:
     def feliciter(self):
         return ""
 
-    def salutation(self):
+    def salutation(self, moment):
         return ""
 
     def revoyure(self):
